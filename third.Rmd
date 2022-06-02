@@ -4,6 +4,9 @@ author: "joyfaith onoh"
 date: '2022-06-02'
 output: html_document
 ---
+```{r}
+
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -28,3 +31,108 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library("R.utils")
+
+
+URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
+download.file(URL,destfile="ecoli_cds.fa.gz")
+gunzip("ecoli_cds.fa.gz")
+list.files()
+```
+```{r}
+library("seqinr")
+cds <- seqinr::read.fasta("ecoli_cds.fa")
+str(head(cds))
+```
+```{r}
+library("R.utils")
+URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_46_collection/campylobacter_coli_gca_003780985/cds/Campylobacter_coli_gca_003780985.PDT000395653.1.cds.all.fa.gz"
+download.file(URL,destfile="ccoli_cds1.fa.gz")
+gunzip("ccoli_cds1.fa.gz")
+cds1 <- seqinr::read.fasta("ccoli_cds1.fa")
+str(head(cds1))
+```
+```{r}
+length(cds)
+length(cds1)
+```
+
+#TOTAL CODING SEQUENCE FOR THE 2 ORGANISMS
+```{r}
+head(summary(cds))
+head(summary(cds1))
+```
+#Q2
+## CALCULATE THE LENGTH OF ALL CODING SEQUENCES IN THESE TWO ORGANISMS. MAKE A BOXPLOT OF CODING SEQUENCE LENGTH IN THESE ORGAMISMS. WHAT IS THE MEAN AND MEDIAN CODING SEQUENCE LENGTH OF THESE TWO ORGANISMS?DESCRIBE ANY DIFFERENCES BETWEEN THE TWO ORGANISMS.
+```{r}
+len <- sapply(X=cds, FUN= length)#for ecoli
+sum(len)
+
+len1 <- sapply(X=cds1, FUN= length)#for ccoli
+sum(len1)
+```
+
+```{r}
+boxplot(len, ylab="LENGTH OF SEQUENCE (bp)", main= "BOXPLOT SHOWING THE LENGTH CODING SEQUENCE IN E.coli")
+
+boxplot(len1, ylab= "LENGTH OF SEQUENCE (bp)", main= "BOXPLOT SHOWING THE LENGTH CODING SEQUENCE IN Campylobacter coli") 
+```
+
+#TO CALCULATE THE MEAN AND MEDIAN OF THEIR SEQUENCE LENGTH
+```{r}
+mean(len)
+median(len)
+mean(len1)
+median(len1)
+```
+
+QUESTION3
+#CALCULATE THE FREQUENCY OF DNA BASES IN THE TOTAL CODING SEQUENCES FOR BOTH ORGANISMS.PERFORM THE SAME CALCULATION FOR THE TOTAL PROTEIN SEQUENCE. CREATE BAR PLOTS FOR NUCLEOTIDE AND AMINO ACID FREQUENCY.DESSCRIBE ANY DIFFERENCES BETWEEN THE TWO ORGANISMS.
+```{r}
+dna <- unlist(cds) #for Ecoli
+dna1 <- unlist(cds1) # for Ccoli
+```
+
+```{r,}
+GC(dna)
+GC(dna1)
+```
+
+```{r}
+translate(cds[[1]]) # to calculate the total protein sequence, first translate
+translate(cds1[[1]])# translate for Ccoli
+```
+
+
+```{r,}
+prot <- lapply(cds,translate) # for Ecoli
+prot1 <- lapply(cds1,translate) #for Ccoli
+```
+
+#  then define the amino acid alphabet for both organisms
+```{r,}
+aa <- unique(prot[[2]])# for Ecoli
+aa1 <- unique(prot1[[2]])# for Ccoli
+```
+
+```{r}
+aa <- aa[aa != "*"]
+aa1 <- aa1[aa1 != "*"]
+length(aa)
+length (aa1)
+```
+
+```{r}
+count(prot[[2]],wordsize=1,alphabet=aa)
+count(prot1[[2]],wordsize=1,alphabet=aa1)
+```
+
+```{r}
+uco(cds[[2]],index="rscu",as.data.frame=TRUE )
+
+uco(cds1[[2]],index="rscu", as.data.frame=TRUE)
+```
+
+# IN THE ORGANISM OF INTEREST, IDENTIFY 10 PROTEIN SEQUENCE K-MERS OF LENGTH 3-5 WHICH ARE THE MOST OVERAND UNDER-REPRESENTED K-MERS IN YOUR ORGANISM OF INTEREST. ARE THESE K-MERS ALSO OVER AND UNDER REPRESENTED IN E.COLI TO A SIMILAR EXTENT? PROVIDE PLOTS TOB SUPPORT YOUR OBSERVATIIONS. WHY DO YOU THINK THESE SEQUENCES ARE PRESENT AT DIFFERENT LEVELS IN THE GENOMES OF THESE ORGANISMS?

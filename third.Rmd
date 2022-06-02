@@ -17,9 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library("R.utils")
 
 
-URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
-download.file(URL,destfile="ecoli_cds.fa.gz")
-gunzip("ecoli_cds.fa.gz")
+#URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
+#download.file(URL,destfile="ecoli_cds.fa.gz")
+#gunzip("ecoli_cds.fa.gz")
 list.files()
 ```
 ```{r}
@@ -29,9 +29,9 @@ str(head(cds))
 ```
 ```{r}
 library("R.utils")
-URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_46_collection/campylobacter_coli_gca_003780985/cds/Campylobacter_coli_gca_003780985.PDT000395653.1.cds.all.fa.gz"
-download.file(URL,destfile="ccoli_cds1.fa.gz")
-gunzip("ccoli_cds1.fa.gz")
+#URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_46_collection/campylobacter_coli_gca_003780985/cds/Campylobacter_coli_gca_003780985.PDT000395653.1.cds.all.fa.gz"
+#download.file(URL,destfile="ccoli_cds1.fa.gz")
+#gunzip("ccoli_cds1.fa.gz")
 cds1 <- seqinr::read.fasta("ccoli_cds1.fa")
 str(head(cds1))
 ```

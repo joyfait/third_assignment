@@ -89,6 +89,13 @@ count(cds1[[1]],1)
 count(cds[[1]],3)
 count(cds1[[1]],3)
 ```
+```{r}
+count(cds[[1]],4)
+count(cds1[[1]],4)
+```
+
+```
+
 
 
 

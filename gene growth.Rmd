@@ -1,0 +1,31 @@
+---
+title: "gene growth"
+author: "joyfaith onoh"
+date: '2022-06-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+
+
+
+```{r, }
+URL="https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/gene_expression.tsv"
+download.file(URL,destfile = "gene expression")
+```
+```{r}
+gene <- read.table(URL,stringsAsFactors = FALSE, header=TRUE, row.names = 1)
+head (gene)
+```
+```{r,}
+grep("gene identifiers", rownames(gene))
+head(gene)
+```
+

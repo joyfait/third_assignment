@@ -54,7 +54,8 @@ head(gene)
 #QUESTION 2
 #MAKE A NEW COLUMN WHICH IS THE MEAN OF THE OTHER COLUMNS.SHOW A TABLE FOR THE FIRST SIX GENE
 
-
+ncol(gene)
+rowMean
 ##gene$colMeans <- rowMeans(gene)
 #head(gene)
 ```

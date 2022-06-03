@@ -1,9 +1,12 @@
 ---
 title: "gene"
 author: "joyfaith onoh"
-date: '2022-06-02'
+date: '2022-06-01'
 output: html_document
 ---
+```{r}
+
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -44,13 +47,8 @@ str(gene)#to find out the type of data
 grep("gene identifiers", rownames(gene))
 head(gene)
 ```
-#TABLE FOR THE FIRST SIX GENES
-#install.packages("kableExtra")
-#devtools::install_github("haozhu233/kableExtra")
 
 
-#kbl(gene[1:6, 1:6])%>%
-#kable_paper(full_width =f, html_font="calibri")
 
 
 #QUESTION 2
@@ -85,10 +83,8 @@ head(gene)
 
 ```{r}
 URL="https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/growth_data.csv"
-growth <- read.table(URL,sep=",",header=TRUE)
 growth <- read.csv(URL)
 head(growth)
-
 ```
 
 

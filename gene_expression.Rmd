@@ -32,7 +32,65 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ```{r}
 URL="https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/gene_expression.tsv"
-<- read.table(URL,stringsAsFactors = FALSE, header=TRUE)
-pip
+gene <- read.table(URL,stringsAsFactors = FALSE, header=TRUE)
+
+gene
 ```
+
+```{r}
+str(gene)#to find out the type of data
+
+
+grep("gene identifiers", rownames(gene))
+head(gene)
+```
+#TABLE FOR THE FIRST SIX GENES
+#install.packages("kableExtra")
+#devtools::install_github("haozhu233/kableExtra")
+
+
+#kbl(gene[1:6, 1:6])%>%
+#kable_paper(full_width =f, html_font="calibri")
+
+
+#QUESTION 2
+#MAKE A NEW COLUMN WHICH IS THE MEAN OF THE OTHER COLUMNS.SHOW A TABLE FOR THE FIRST SIX GENE
+
+
+##gene$colMeans <- rowMeans(gene)
+#head(gene)
+```
+
+
+#library("kableExtra")
+```
+
+#Q3
+# LIST THE 10 GENES WITH THE HIGHEST MEAN EXPRESSION
+
+
+#Q4
+#DETERMINE THE NUMBER OF GENES WITH A MEAN <10
+
+
+
+#Q5
+#MAKE A HISTOGRAM PLOT OF THE MEAN VALUES AND INCLUDE IT INTO YOUR REPORT
+
+
+
+
+
+
+
+```{r}
+URL="https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/growth_data.csv"
+growth <- read.table(URL,sep=",",header=TRUE)
+growth <- read.csv(URL)
+head(growth)
+
+```
+
+
+
 

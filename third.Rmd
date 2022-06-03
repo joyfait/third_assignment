@@ -4,15 +4,14 @@ author: "joyfaith onoh"
 date: '2022-06-02'
 output: html_document
 ---
-```{r}
 
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-`
+#Q1
+## DOWNLOAD THE CODING SEQUENCES OF E.COLI AND CAMPYLOBACTER COLI.HOW MANY CODING SEQUENCE ARE PRESENT IN THESE ORGANISMS? HOW MUCH CODING DNA IS THERE IN TOTAL FOR THESE TWO ORGANISMS? DESCRIBE ANY DIFFERENCES BETWEEN THE TWO ORGANISMS.
 ```{r}
 library("R.utils")
 

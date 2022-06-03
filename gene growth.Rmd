@@ -28,4 +28,99 @@ head (gene)
 grep("gene identifiers", rownames(gene))
 head(gene)
 ```
+```{r}
+#Q2
+##MAKE A NEW COLUMN WHICH IS THE MEAN OF THE OTHER COLUMNS. SHOW A TABLE OF VALUES FOR THE FIRST SIX GENES.
+
+
+rowMeans(gene)# mean of the genes
+Mean <- rowMeans(gene)# assining it a header as mean
+Mean
+gene$Mean <- Mean
+
+head(gene)
+```
+#Q3 LIST THE 10 GENES WITH THE HIGHEST MEAN EXPRESSION
+```{r }
+order(gene$Mean) #first i order the gene
+gene[order(-gene$Mean),]
+```
+
+```{r, }
+Jsort <- gene[order(-gene$Mean),] #then sort it (the negative sign is to order it in descending order from the highest to 
+Jsort[1:10,]
+```
+#Q4
+## DETERMINE THE NUMBER OF GENES WITH A MEAN <10
+```{r}
+#DETERMINE THE NUMBER OF GENES WITH A MEAN <10
+length (gene$Mean < 10)
+```
+ #5 MAKE A HISTOGRAM PLOT OF THE MEAN VALUES
+
+```{r,}
+hist(gene$Mean, xlab="MEAN OF GENES(cm)", ylab= "FREQUENCY", main= "HISTOGRAM OF MEAN THE DATASET GENE_EXPRESSION")
+```
+#Q6
+#IMPORT THE CSV FILE INTO R
+
+```{r,}
+URL="https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/growth_data.csv"
+download.file(URL,destfile = "growth_data")
+data<- read.csv(URL)
+```
+```{r}
+head(data)
+```
+```{r}
+str (data)
+```
+
+#TO GET THE COLUMN NAMES
+
+```{r}
+colnames(data)
+```
+# The column names are= "Site"            "TreeID"          "Circumf_2005_cm" "Circumf_2010_cm" "Circumf_2015_cm" "Circumf_2020_cm"
+
+#Q2
+#CALCULATE THE MEAN AND STANDARD DEVIATION OF TREE CIRCUMFERENCE AT THE START AND END OF THE STUDY AT BOTH SITES
+
+```{r}
+mean_start <- mean(data$Circumf_2005_cm)
+mean_start
+
+mean_end <- mean(data$Circumf_2020_cm)
+mean_end
+```
+
+```{r }
+sd_start <- sd(data$Circumf_2005_cm)
+sd_start
+
+sd_end <- (data$Circumf_2020_cm)
+sd_end
+```
+#Q8
+#MAKE A BOXPLOT OF TREE  CIRCUMFERENCE AT THE START AND END OF THE STUDY
+
+```{r}
+boxplot(data$Circumf_2005_cm, data$Circumf_2020_cm, main= "BOXPLOT OF TREE CIRCUMFERENCE IN 2005 AND 2020", ylab= "TREE CIRCUMFERENCE (cm)")
+```
+
+#Q9
+#CALCULATE THE MEAN GROWTH OVER THE LAST 10 YEARS AT EACH SITE.
+#the mean in the past 10years is from 2010 t0 2020
+#I will find the mean for each for 2010 and 2020 and subtract
+
+```{r }
+mean(data$Circumf_2010_cm)
+```
+```{r}
+mean(data$Circumf_2020_cm)
+```
+```{r}
+49.912 - 10.697
+```
+#The mean growth is =39.215cm.
 

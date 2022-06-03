@@ -43,6 +43,8 @@ str(head(cds1)) #head for ccoli
 length(cds)
 length(cds1)
 ```
+#the dna coding sequence of ecoli nis more than double that of ccoli. 
+
 
 #TOTAL CODING SEQUENCE FOR THE 2 ORGANISMS
 ```{r}
@@ -75,14 +77,39 @@ median(len1)
 QUESTION3
 #CALCULATE THE FREQUENCY OF DNA BASES IN THE TOTAL CODING SEQUENCES FOR BOTH ORGANISMS.PERFORM THE SAME CALCULATION FOR THE TOTAL PROTEIN SEQUENCE. CREATE BAR PLOTS FOR NUCLEOTIDE AND AMINO ACID FREQUENCY.DESSCRIBE ANY DIFFERENCES BETWEEN THE TWO ORGANISMS.
 ```{r}
-dna <- unlist(cds) #for Ecoli
-dna1 <- unlist(cds1) # for Ccoli
+GC(cds[[1]])
+GC(cds[[1]]) 
+
+```
+```{r}
+count(cds[[1]],1)
+count(cds1[[1]],1)
+```
+```{r}
+count(cds[[1]],3)
+count(cds1[[1]],3)
+```
+
+
+
+
+```{r}
+dna <- unlist(cds) # nucleotides for Ecoli
+dna1 <- unlist(cds1) #nucleotides for Ccoli
 ```
 
 ```{r,}
 GC(dna)
 GC(dna1)
 ```
+
+```{r}
+dna_composition <- count(dna,1)
+```
+
+barplot(dna_composition,xlab="nucleotides",ylab="frequency", main="E coli CDS composition")
+```
+
 
 ```{r}
 translate(cds[[1]]) # to calculate the total protein sequence, I first translate
@@ -120,3 +147,11 @@ uco(cds1[[2]],index="rscu", as.data.frame=TRUE)
 ```
 
 # IN THE ORGANISM OF INTEREST, IDENTIFY 10 PROTEIN SEQUENCE K-MERS OF LENGTH 3-5 WHICH ARE THE MOST OVERAND UNDER-REPRESENTED K-MERS IN YOUR ORGANISM OF INTEREST. ARE THESE K-MERS ALSO OVER AND UNDER REPRESENTED IN E.COLI TO A SIMILAR EXTENT? PROVIDE PLOTS TOB SUPPORT YOUR OBSERVATIIONS. WHY DO YOU THINK THESE SEQUENCES ARE PRESENT AT DIFFERENT LEVELS IN THE GENOMES OF THESE ORGANISMS?
+
+
+
+```{r}
+GC(cds[[1]])
+GC(cds1[[1]])
+```
+
